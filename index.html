@@ -25,10 +25,10 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
       <a class="navbar-brand" href="#">< is ></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+      </button>-->
+      <div class="navbar-expand" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#introduction">Introduction
@@ -70,6 +70,7 @@
         <a class="anchor" name="introduction"></a>
         <h4 class="mt-1"><i class="fas fa-info"></i> Introduction</h1>
         <p>The main idea of software debloating is to reduce software's attack surface by removing pieces of code that are not required by users. In this study, we analyze four popular PHP applications (phpMyAdmin, MediaWiki, Magento and WordPress) and show that a reduction of upto 71% in Logical Lines of Code, upto 60% in historic CVEs and upto 100% in Object Injection Gadgets is possible. Essentially, by removing unused functionality and libraries from the application we can significantly reduce the attack surface.</p>
+        <p><i class="far fa-file-pdf"></i> The paper is available at <a href="https://securitee.org/#publications">https://securitee.org/#publications</a></p>
       </div>
     </div>
 
@@ -126,7 +127,9 @@
           </p>
           <p><b>Running the container: </b>In order to build and run docker containers, after downloading your desired template, run
             <pre><code class="bash">docker-compose up</code></pre>
-            in root directory of the project and access the applications at http://localhost:8085 and reports at http://localhost:8086/admin.</p>
+            in root directory of the project and access the applications at http://localhost:8085 and reports at http://localhost:8086/admin.
+          </p>
+          <p><b>Running the usage profiles: </b>
           <p><b>Debloating a new web application: </b> To add a new web application, follow these steps:
             <ol>
               <li>
@@ -157,7 +160,7 @@
       <div class="col-lg-12">
         <a class="anchor" name="about"></a>
         <h4 class="mt-1"><i class="fas fa-users"></i> About</h1>
-        <p>We are a team of security researchers at PragSec Lab, Stony Brook University (<a target="_blank" href="https://securitee.org">https://securitee.org</a>).</p>
+        <p>We are a team of security researchers at PragSec Lab, Stony Brook University (<a target="_blank" href="https://securitee.org">https://securitee.org</a>).<br />For any queries or questions contact Babak Amin Azad via baminazad@cs.stonybrook.edu</p>
       </div>
     </div>
 
@@ -169,7 +172,7 @@
       <div class="col-lg-12">
         <a class="anchor" name="FAQ"></a>
         <h4 class="mt-1"><i class="fas fa-question"></i> FAQ</h1>
-        <p>Quantifying the Security Benefits of Debloating Web Applications</p>
+        <p>Frequently Asked Questions go here.</p>
       </div>
     </div>
   </div>
