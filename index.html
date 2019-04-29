@@ -86,7 +86,7 @@
           This system is comprised of three docker images:<br />
           <ul>
             <li>
-              <b>"web"</b> container hosts the web applications. It runs apache with PHP 5.6 (To support older version of applications for our study) and uses XDebug to record code coverage information. Web container is accessible at http://localhost:8085 by default.
+              <b>"web"</b> container hosts the web applications. It runs Apache with PHP 5.6 (To support older version of applications for our study) and uses XDebug to record code coverage information. Web container is accessible at http://localhost:8085 by default.
             </li>
             <li>
               <b>"db"</b> includes the main database (code_coverage) with CVE mappings and coverage information along with database files required to run desired web applications.
@@ -95,6 +95,22 @@
               <b>"admin"</b> container hosts the administation panel and debloating logic. Adding new software, mapping new CVEs and viewing which vulnerable lines within the application were triggered during the usage of the application are possible. Moreover, you can remove unused files and functions using this panel after executing desired functionality of the application and recording its code coverage. Web and Admin map to the same volume and access the same web applications. Admin panel is accessible at http://localhost:8086/admin.
             </li>
           </ul>
+        </p>
+        <p>
+          <h5><i class="fas fa-code-branch"></i> Extending the framework</h5>
+          <b>- Admin Panel:</b> The admin panel that contains the debloating logic and reporting UI is hosted under <span class="path">web/admin</span> directory.
+          <br />
+          <b>- Database Schema:</b> The schema of the database along with CVE mappings for the four web applications is located at <span class="path">database/Schema/db_template_with_vulns_pma_mwk_mgt_wordpress.sql</span>.
+          <br />
+          <b>- Recording Code Coverage:</b> PHP auto_prepend is used to record code coverage of PHP files. The file that is injected in all PHP files handles the code coverage life cycle and records the information in the database is accessible at <span class="path">codecoverage/start_xdebug.php</span>
+          <br />
+          <b>- Parsing PHP Files:</b> We use <a target="_blank" href="https://github.com/nikic/PHP-Parser">PHPParser</a> to parse and rewrite PHP files.
+          <br />
+          <b>- File Debloating:</b> File debloating is implemented under <span class="path">web/admin/application/controllers/Software_file.php:debloat_files($id)</span>. We match each file with the list of covered files in the database and remove those which were never executed.
+          <br />
+          <b>- Function Debloating:</b> Function level debloating uses a compiler pass implemented inside DebloatFunctionVisitor class within <span class="path">web/admin/application/controllers/Software_file.php</span>. debloat_functions($fk_software_files_description) function is responsible for this action. For each function, we check if any of the executable lines within that function were executed during the tests. If no line within a function is executed, then we remove the function and replace it with the place holder.
+          <br />
+          <b>- Calls To Removed Files/Functions:</b> We use a place holder to fill removed files and functions to stop further execution of the PHP code within the path that includes a removed functionality. This stops the application from entering the states that were not anticipated by developers. This place holder can be modified within Software_file.php. It currently shows an HTML error message to the user with the actual file or function that was removed and logs this event in the error_log of Apache.
         </p>
       </div>
     </div>
@@ -123,20 +139,38 @@
             </li>
           </ul>
           <p>Current web application configuration expects each web application to reside in the "web" directory itself. To test file and function level debloated variants, simply move their directories up from file_debloating or function_debloating directories to web.
-          <br /><i class="fas fa-link"></i> The source code is hosted on Github at <a target="_blank" href="https://github.com/silverfoxy/PHPDebloating">https://github.com/silverfoxy/PHPDebloating</a>.
+            <br /><i class="fas fa-link"></i> The source code is hosted on Github at <a target="_blank" href="https://github.com/silverfoxy/PHPDebloating">https://github.com/silverfoxy/PHPDebloating</a>.
+            <br />* docker and docker-compose packages are required to run this code.
           </p>
-          <p><b>Running the container: </b>In order to build and run docker containers, after downloading your desired template, run
+          <p><b>Running the container: </b>In order to build and run docker containers, after downloading your desired template, navigate to its root directory and run:
             <pre><code class="bash">docker-compose up</code></pre>
-            in root directory of the project and access the applications at http://localhost:8085 and reports at http://localhost:8086/admin.
+            you can access the web applications at http://localhost:8085 and reports at http://localhost:8086/admin.
           </p>
           <p><b>Running the usage profiles: </b>
+            In the paper, we mention Tutorials mapped through Selenium scripts. Monkey tests based on Gremlinsjs. Spider and Scanner from BurpSuite.
+            <ul class="dashed">
+              <li>
+                <b>Tutorials (Selenium scripts):</b> The scripts are located under <span class="path">Tests/Selenium-Tests/application_name</span>. It requires Chrome and Firefox (only for Magento 2.0.5 tests) along with the webdrivers and selenium to run. Most of the tests will execute successfully regardless of the platform.
+                <br />* Magento 2.0.5 tests are stable only on Ubuntu and may sometimes fail to click certain buttons on Windows or Mac.
+              </li>
+              <li>
+                <b>Monkey tests:</b> The scripts are located under <span class="path">Tests/GremlinsJS/application_name.js</span>. Install <a target="_blank" href="https://tampermonkey.net/">Tampermonkey</a> extension on Chrome and import javascript files. Navigate to the target application and enable the script from Tampermonkey. To limit their execution time we used Tab sleep timer extension. We run separate tests for admin/registered/unregistered users.
+              </li>
+              <li>
+                <b>Spider:</b> <a target="_blank" href="https://portswigger.net/burp/communitydownload">BurpSuite Community Edition</a> was used in our study. Point the spider to the home page of the application and give it the credentials to login.
+              </li>
+              <li>
+                <b>Vulnerability Scanner:</b> The scanner module from <a target="_blank" href="https://portswigger.net/requestfreetrial/pro">BurpSuite Pro</a> was used for this part.
+              </li>
+            </ul>
+          </p>
           <p><b>Debloating a new web application: </b> To add a new web application, follow these steps:
             <ol>
               <li>
-                Move your web application files to "web" directory and make sure Dockerfiles/web/Dockerfile installs the required dependencies and prepares the web server.
+                Move your web application files to "web" directory and make sure <span class="path">Dockerfiles/web/Dockerfile</span> installs the required dependencies and prepares the web server.
               </li>
               <li>
-                By placing the database backup sql file under Dockerfiles/db/entrypoint/ the database will be restored upon building the image
+                By placing the database backup sql file under <span class="path">Dockerfiles/db/entrypoint/</span> the database will be restored upon building the image. ِYour web application can access the database container at "db".
               </li>
               <li>
                 Under administration panel, add your web application directory to the database. Update destructors and exit calls to comply to our structure under Debloating menu by adding your web application files to the database.
@@ -145,7 +179,11 @@
                 Generate usage traffic that represents how users interact with the application to record code coverage.
               </li>
               <li>
-                Under administration panel in Debloating page, choose your desired debloating granularity (File or Function level). Next, you will see a report on which files/functions were removed.
+                Map any known vulnerabilities to your application if you want to measure the effectiveness of debloating in terms of removed vulnerabilities.
+              </li>
+              <li>
+                Under administration panel in Debloating page, choose your desired debloating granularity (File or Function level). Next, the application will be debloated and you will see a report on which files/functions were removed.
+                <br />* Make sure you maintain a separate copy of your original application as debloating will remove certain parts of your application.
               </li>
             </ol>
           </p>
@@ -160,7 +198,7 @@
       <div class="col-lg-12">
         <a class="anchor" name="about"></a>
         <h4 class="mt-1"><i class="fas fa-users"></i> About</h1>
-        <p>We are a team of security researchers at PragSec Lab, Stony Brook University (<a target="_blank" href="https://securitee.org">https://securitee.org</a>).<br />For any queries or questions contact Babak Amin Azad via baminazad@cs.stonybrook.edu</p>
+        <p>We are a team of security researchers at PragSec Lab, Stony Brook University (<a target="_blank" href="https://securitee.org">https://securitee.org</a>).<br />For any queries or questions contact Babak Amin Azad at <a href="mailto:baminazad@cs.stonybrook.edu">baminazad@cs.stonybrook.edu</a></p>
       </div>
     </div>
 
@@ -172,7 +210,24 @@
       <div class="col-lg-12">
         <a class="anchor" name="FAQ"></a>
         <h4 class="mt-1"><i class="fas fa-question"></i> FAQ</h1>
-        <p>Frequently Asked Questions go here.</p>
+        <p>
+          <b>- What does a debloated application look like in action?</b><br />
+          Unless you trigger a removed part of the application, everything else looks identical. And a custom error message is displayed if a removed feature is executed. Here's a video of an exploit attempt on CVE-2016-4010 failing on debloated version of Magento 2.0.5. This attempt fails because the gadget chain relies on Credis_client class (redis client for Magento) being present which is removed after debloating.
+        </p>
+        <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 embed-responsive embed-responsive-16by9" style="margin-bottom: 25px">
+          <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/328225679" allowfullscreen></iframe>
+        </div>
+        <p>
+          <b>- How are Object Injection Gadgets extracted?</b><br />
+          Our current study is based on known gadget chains from popular PHP packages reported at <a target="_blank" href="https://github.com/ambionics/phpggc">PHPGGC library</a>. After we debloat the web applications, we checked if these gadgets (the whole file or the magic functions) are removed or not.
+        </p>
+        <p>
+          <b>- Can I run this software in a production environment?</b><br />
+          XDebug, the PHP extension that is used to record line level code coverage  hooks into Zend engine and has a noticeable overhead. In our setup, based on the four applications we tested, the page load time was increased 2-4 times. As such, this overhead may be unacceptable based on your setup. One solution is to record the coverage on a subset of users by load balancing. Another solution is to use record-and-replay proxies to record real traffic to the application and replay them offline.<br />
+          A third solution is to optimize XDebug's code coverage engine and make it more efficient for our need. Currently it overloads over 47 op codes. As only detecting the coverage of files or functions is enough for our architecture, we can extend this module or use in house implementations that decorate functions with code that records the coverage and achieve an acceptable overhead.
+        </p>
       </div>
     </div>
   </div>

@@ -16,3 +16,7 @@ ul.dashed > li:before {
 .logo {
   font-family: 'Varela Round', sans-serif;
 }
+
+.path {
+  background-color: #E0E0E0;
+}
