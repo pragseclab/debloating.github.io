@@ -104,7 +104,7 @@
           <br />
           <b>- Recording Code Coverage:</b> PHP auto_prepend is used to record code coverage of PHP files. The file that is injected in all PHP files handles the code coverage life cycle and records the information in the database is accessible at <span class="path">codecoverage/start_xdebug.php</span>
           <br />
-          <b>- Parsing PHP Files:</b> We use <a target="_blank" href="https://github.com/nikic/PHP-Parser">PHPParser</a> to parse and rewrite PHP files.
+          <b>- Parsing PHP Files:</b> We use <a target="_blank" href="https://github.com/nikic/PHP-Parser">PHP-Parser</a> to parse and rewrite PHP files.
           <br />
           <b>- File Debloating:</b> File debloating is implemented under <span class="path">web/admin/application/controllers/Software_file.php:debloat_files($id)</span>. We match each file with the list of covered files in the database and remove those which were never executed.
           <br />
@@ -219,16 +219,16 @@
         <div class="col-lg-8 embed-responsive embed-responsive-16by9" style="margin-bottom: 25px">
           <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/328225679" allowfullscreen></iframe>
         </div>
-        <p>
-          <b>- How are Object Injection Gadgets extracted?</b><br />
-          Our current study is based on known gadget chains from popular PHP packages reported at <a target="_blank" href="https://github.com/ambionics/phpggc">PHPGGC library</a>. After we debloat the web applications, we checked if these gadgets (the whole file or the magic functions) are removed or not.
-        </p>
-        <p>
-          <b>- Can I run this software in a production environment?</b><br />
-          XDebug, the PHP extension that is used to record line level code coverage  hooks into Zend engine and has a noticeable overhead. In our setup, based on the four applications we tested, the page load time was increased 2-4 times. As such, this overhead may be unacceptable based on your setup. One solution is to record the coverage on a subset of users by load balancing. Another solution is to use record-and-replay proxies to record real traffic to the application and replay them offline.<br />
-          A third solution is to optimize XDebug's code coverage engine and make it more efficient for our need. Currently it overloads over 47 op codes. As only detecting the coverage of files or functions is enough for our architecture, we can extend this module or use in house implementations that decorate functions with code that records the coverage and achieve an acceptable overhead.
-        </p>
       </div>
+      <p>
+        <b>- How are Object Injection Gadgets extracted?</b><br />
+        Our current study is based on known gadget chains from popular PHP packages reported at <a target="_blank" href="https://github.com/ambionics/phpggc">PHPGGC library</a>. After we debloat the web applications, we checked if these gadgets (the whole file or the magic functions) are removed or not.
+      </p>
+      <p>
+        <b>- Can I run this software in a production environment?</b><br />
+        XDebug, the PHP extension that is used to record line level code coverage  hooks into Zend engine and has a noticeable overhead. In our setup, based on the four applications we tested, the page load time was increased 2-4 times. As such, this overhead may be unacceptable based on your setup. One solution is to record the coverage on a subset of users by load balancing. Another solution is to use record-and-replay proxies to record real traffic to the application and replay them offline.<br />
+        A third solution is to optimize XDebug's code coverage engine and make it more efficient for our need. Currently it overloads over 47 op codes. As only detecting the coverage of files or functions is enough for our architecture, we can extend this module or use in house implementations that decorate functions with code that records the coverage and achieve an acceptable overhead.
+      </p>
     </div>
   </div>
 
