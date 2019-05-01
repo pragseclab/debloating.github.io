@@ -24,7 +24,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top">
     <div class="container">
-      <a class="navbar-brand" href="#">< is ></a>
+      <a class="navbar-brand" href="#" data-toggle="tooltip" data-placement="bottom" title="Less is More">< is ></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -56,7 +56,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="mt-5 logo">< is ></h1>
+        <h1 class="mt-5 logo" data-toggle="tooltip" data-placement="top" title="Less is More">< is ></h1>
         <p class="lead">Quantifying the Security Benefits of Debloating Web Applications</p>
       </div>
     </div>
@@ -236,7 +236,12 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/highlightjs/highlight.pack.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+  <script>
+    $(document).ready(function(){
+        hljs.initHighlightingOnLoad();
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
 
 </body>
 
