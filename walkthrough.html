@@ -33,9 +33,12 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#administration">Administration Panel
+            <a class="nav-link" href="#templates">Templates
               <span class="sr-only">(current)</span>
             </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#administration">Administration Panel</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#add_new_software">Adding Software</a>
@@ -57,6 +60,25 @@
       <div class="col-lg-12 text-center">
         <h1 class="mt-5 logo" data-toggle="tooltip" data-placement="top" title="Less is More">< is ></h1>
         <p class="lead">Walkthrough</p>
+      </div>
+    </div>
+
+    <!-- Templates -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <hr />
+      </div>
+      <div class="col-lg-12">
+        <a class="anchor" name="templates"></a>
+        <h4 class="mt-1"><i class="fas fa-cubes"></i> Templates</h1>
+        <p>
+          Configured containers for studied web applications are available for download. After downloading the <a href="https://debloating.com/#sourcecode">desired compressed package<a/>, and running docker-compose up you can access the web applications on port 8085.
+          <br />
+          By default, the original versions of applications are loaded. The credentials used to login to these instances is available in CREDENTIALS.txt file in each compressed package.
+        </p>
+        <p>
+          To test the debloating process, you can either debloat the applications yourself (described below) or you can test the currently debloated versions. To do that, SSH into the "web" container (you can use ssh_web.sh script available in root directory of the project), navigate to /var/www/html/ and move the files from file_debloating or function_debloating directories to the parent directory. You can make sure the permissions are correct by issuing chown -R www-data:www-data * in /var/www/html/.
+        </p>
       </div>
     </div>
 
