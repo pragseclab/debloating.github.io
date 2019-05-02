@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>< is > : Walkthrough</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link href="vendor/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/highlightjs/styles/default.css">
+  <link rel="stylesheet" href="vendor/ekko-lightbox/ekko-lightbox.css">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#" data-toggle="tooltip" data-placement="bottom" title="Less is More">< is ></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#administration">Administration Panel
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#add_new_software">Adding Software</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#map_cves">Mapping CVEs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#dynamic_analysis">Dynamic Analysis</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5 logo" data-toggle="tooltip" data-placement="top" title="Less is More">< is ></h1>
+        <p class="lead">Walkthrough</p>
+      </div>
+    </div>
+
+    <!-- Administration -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <hr />
+      </div>
+      <div class="col-lg-12">
+        <a class="anchor" name="administration"></a>
+        <h4 class="mt-1"><i class="fas fa-user-cog"></i> Administration Panel</h1>
+        <p>This panel is accessible at http://localhost:8086/admin. Within this panel you can perform tasks such as:</p>
+        <ul>
+          <li>
+            Add new CVEs
+          </li>
+          <li>
+            Map CVEs to files, functions and lines of web applications
+          </li>
+          <li>
+            View coverage of application usage profiles and covered vulnerabilities
+          </li>
+          <li>
+            Perform file and function level debloating
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Adding New Software -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <hr />
+      </div>
+      <div class="col-lg-12">
+        <a class="anchor" name="add_new_software"></a>
+        <h4 class="mt-1"><i class="far fa-window-maximize"></i> Adding a new software</h1>
+        <p>
+          You can host and debloat multiple versions of different web applications at the same time. As such, "WEB APPLICATIONS" subsection will allow you to add different versions of web applications.
+        </p>
+          <b>- Adding a new software</b>
+          <div class="row">
+              <div class="col-lg-2"></div><div class="col-lg-8">
+              <a href="images/add_software.png" data-toggle="lightbox" data-title="Adding a new software">
+                <img class="img-fluid img-thumbnail rounded" src="images/add_software.png" />
+              </a>
+              </div>
+          </div>
+          <br />
+          <b>- Adding a new software version</b>
+          <div class="row">
+            <div class="col-lg-2"></div><div class="col-lg-8">
+              <a href="images/add_software_version.png" data-toggle="lightbox" data-title="Adding a new software version">
+                <img class="img-fluid img-thumbnail rounded" src="images/add_software_version.png" />
+              </a>
+            </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mapping CVEs -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <hr />
+      </div>
+      <div class="col-lg-12">
+        <a class="anchor" name="map_cves"></a>
+        <h4 class="mt-1"><i class="fas fa-flag"></i> Mapping CVEs</h1>
+          <p>By following the steps below, under "VULNERABILITIES" subsection, we can add new CVEs and mark vulnerable files, functions and lines in our target applications.</p>
+          <b>- Adding a new CVE</b>
+          <div class="row">
+              <div class="col-lg-2"></div><div class="col-lg-8">
+                <a href="images/add_cve.png" data-toggle="lightbox" data-title="Adding a new CVE">
+                  <img class="img-fluid img-thumbnail rounded" src="images/add_cve.png" />
+                </a>
+              </div>
+          </div>
+          <br />
+          <b>- Mapping CVE to vulnerable files</b>
+          <div class="row">
+              <div class="col-lg-2"></div><div class="col-lg-8">
+                <a href="images/add_vulnerable_file.png" data-toggle="lightbox" data-title="Mapping CVE to vulnerable files">
+                  <img class="img-fluid img-thumbnail rounded" src="images/add_vulnerable_file.png" />
+                </a>
+              </div>
+          </div>
+          <br />
+          <b>- Mapping CVE to vulnerable functions</b> (Line number points to the first statement within the function)
+          <div class="row">
+              <div class="col-lg-2"></div><div class="col-lg-8">
+                <a href="images/add_vulnerable_function.png" data-toggle="lightbox" data-title="Mapping CVE to vulnerable functions">
+                  <img class="img-fluid img-thumbnail rounded" src="images/add_vulnerable_function.png" />
+                </a>
+              </div>
+          </div>
+          <br />
+          <b>- Mapping CVE to vulnerable lines</b>
+          <div class="row">
+              <div class="col-lg-2"></div><div class="col-lg-8">
+                <a href="images/add_vulnerable_line.png" data-toggle="lightbox" data-title="Mapping CVE to vulnerable lines">
+                  <img class="img-fluid img-thumbnail rounded" src="images/add_vulnerable_line.png" />
+                </a>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Analysis -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <hr />
+      </div>
+      <div class="col-lg-12">
+        <a class="anchor" name="dynamic_analysis"></a>
+        <h4 class="mt-1"><i class="fas fa-chart-bar"></i> Dynamic Analysis</h1>
+        <p>This section presents the reports on which vulnerable files, functions or lines within each application was executed during selected tests. Additionally we can debloat target web applications at the file or function level.</p>
+        <b>- Reports</b>
+        <br />
+        You can select multiple test categories and use the buttons over the top to aggregate the coverage of tests. You can also export the report as CSV.
+        <div class="row">
+            <div class="col-lg-2"></div><div class="col-lg-8">
+              <a href="images/reports.png" data-toggle="lightbox" data-title="Reports">
+                <img class="img-fluid img-thumbnail rounded" src="images/reports.png" />
+              </a>
+            </div>
+        </div>
+        <br />
+        <b>- Covered vulnerable files</b>
+        <br />
+        This view lists vulnerable files for target web application and marks the ones that were executed during our tests. In this example, file level debloating can remove the vulnerable files that were not executed and as a result, remove those CVEs.
+        <div class="row">
+            <div class="col-lg-2"></div><div class="col-lg-8">
+              <a href="images/covered_vulnerable_files.png" data-toggle="lightbox" data-title="Covered vulnerable files">
+                <img class="img-fluid img-thumbnail rounded" src="images/covered_vulnerable_files.png" />
+              </a>
+            </div>
+        </div>
+        <br />
+        <b>- Preparing web application for debloating</b>
+        <br />
+        To initiate the process of debloating, we add our target web application files to our database.
+        <div class="row">
+            <div class="col-lg-2"></div><div class="col-lg-8">
+              <a href="images/add_webapp_files.png" data-toggle="lightbox" data-title="Preparing web application for debloating">
+                <img class="img-fluid img-thumbnail rounded" src="images/add_webapp_files.png" />
+              </a>
+            </div>
+        </div>
+        <br />
+        <b>- Performing file and function level debloating</b>
+        <div class="row">
+            <div class="col-lg-2"></div><div class="col-lg-8">
+              <a href="images/debloating_applications.png" data-toggle="lightbox" data-title="Performing file and function level debloating">
+                <img class="img-fluid img-thumbnail rounded" src="images/debloating_applications.png" />
+              </a>
+            </div>
+        </div>
+        <br />
+        <b>- Debloating results</b>
+        <br />
+        After clicking on file or function debloating, you will see the list of removed files and functions.
+        <br />
+        <b>- File debloating logs</b>
+        <div class="row">
+            <div class="col-lg-2"></div><div class="col-lg-8">
+              <a href="images/file_debloating_report.png" data-toggle="lightbox" data-title="File debloating logs">
+                <img class="img-fluid img-thumbnail rounded" src="images/file_debloating_report.png" />
+              </a>
+            </div>
+        </div>
+        <br />
+        <b>- Function debloating logs</b>
+        <div class="row">
+            <div class="col-lg-2"></div><div class="col-lg-8">
+              <a href="images/function_debloating_report.png" data-toggle="lightbox" data-title="Function debloating logs">
+                <img class="img-fluid img-thumbnail rounded" src="images/function_debloating_report.png" />
+              </a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/highlightjs/highlight.pack.js"></script>
+  <script src="vendor/ekko-lightbox/ekko-lightbox.min.js"></script>
+  <script>
+    $(document).ready(function(){
+        hljs.initHighlightingOnLoad();
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
+  </script>
+
+</body>
+
+</html>
