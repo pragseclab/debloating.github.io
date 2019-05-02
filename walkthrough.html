@@ -74,7 +74,7 @@
         <p>
           Configured containers for studied web applications are available for download. After downloading the <a href="https://debloating.com/#sourcecode">desired compressed package<a/>, and running docker-compose up you can access the web applications on port 8085.
           <br />
-          By default, the original versions of applications are loaded. The credentials used to login to these instances is available in CREDENTIALS.txt file in each compressed package.
+          By default, the original versions of applications are loaded. The credentials used to login to these instances are available in CREDENTIALS.txt file in each compressed package.
         </p>
         <p>
           To test the debloating process, you can either debloat the applications yourself (described below) or you can test the currently debloated versions. To do that, SSH into the "web" container (you can use ssh_web.sh script available in root directory of the project), navigate to /var/www/html/ and move the files from file_debloating or function_debloating directories to the parent directory. You can make sure the permissions are correct by issuing chown -R www-data:www-data * in /var/www/html/.
