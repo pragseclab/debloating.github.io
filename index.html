@@ -167,7 +167,7 @@
               </li>
             </ul>
           </p>
-          <p><b>Debloating a new web application: </b> To add a new web application, follow these steps:
+          <p><b>Debloating a new web application:</b> To add a new web application, follow these steps:
             <ol>
               <li>
                 Move your web application files to "web" directory and make sure <span class="path">Dockerfiles/web/Dockerfile</span> installs the required dependencies and prepares the web server.
@@ -190,6 +190,28 @@
               </li>
             </ol>
           </p>
+          <p>
+            <b>Mapping web applications to debloating database versions:</b>The debloating engine needs to know which version of web applications is being used, you can either use cookies or environment variables to pass this information to the back end.
+          </p>
+          <b>- Cookie:</b> By setting the following cookies, the backend knows which application is being tested.
+          <ul>
+            <li>test_group: name of test category (e.g. "pma470_tutorials")</li>
+            <li>test_name: name of specific test (e.g. "drop database")</li>
+            <li>software_id: from code_coverage database (e.g. "1" for phpMyAdmin)</li>
+            <li>software_version_id: from code_coverage database (e.g. "1" for phpMyAdmin 4.0.0)</li>
+          </ul>
+          <b>- Environment Variables:</b> These values can be set within .htaccess in root directory of each web application. Values from cookies will override this setting. This method is specially useful where it is not possible to manually set cookies within the testing software for example the spider or scanner.
+          <ul>
+            <li>SetEnv lim_test_group "mgt205_scanner"</li>
+            <li>SetEnv lim_test_name "mgt205_scanner"</li>
+            <li>SetEnv lim_software_id "3"</li>
+            <li>SetEnv lim_software_version_id "11"</li>
+          </ul>
+            <b>Temporarily Disabling Code Coverage Recording:</b> Sometimes we need to stop code coverage reporting. To do that, stop PHP from prepending the code coverage logic to all PHP files by adding the following code to .htaccess.
+            <br />
+            <ul>
+              <li>php_value auto_prepend_file none</li>
+            </ul>
       </div>
     </div>
 
