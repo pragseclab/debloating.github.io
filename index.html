@@ -72,7 +72,7 @@
       <div class="col-lg-12">
         <a class="anchor" name="introduction"></a>
         <h4 class="mt-1"><i class="fas fa-info"></i> Introduction</h1>
-        <p>The main idea of software debloating is to reduce software's attack surface by removing pieces of code that are not required by users. In this study, we analyze four popular PHP applications (phpMyAdmin, MediaWiki, Magento and WordPress) and show that a reduction of upto 71% in Logical Lines of Code, upto 60% in historic CVEs and upto 100% in Object Injection Gadgets is possible. Essentially, by removing unused functionality and libraries from the application we can significantly reduce the attack surface.</p>
+        <p>The main idea of software debloating is to reduce software's attack surface by removing pieces of code that are not required by users. In this study, we analyze four popular PHP applications (phpMyAdmin, MediaWiki, Magento and WordPress) and show that a reduction of up to 71% in Logical Lines of Code, up to 60% in historic CVEs and up to 100% in Object Injection Gadgets is possible. Essentially, by removing unused functionality and libraries from the application we can significantly reduce the attack surface.</p>
         <p><i class="far fa-file-pdf"></i> The paper is available at <a href="https://securitee.org/#publications">https://securitee.org/#publications</a></p>
       </div>
     </div>
@@ -252,7 +252,7 @@
       <p>
         <b>- Can I run this software in a production environment?</b><br />
         XDebug, the PHP extension that is used to record line level code coverage  hooks into Zend engine and has a noticeable overhead. In our setup, based on the four applications we tested, the page load time was increased 2-4 times. As such, this overhead may be unacceptable based on your setup. One solution is to record the coverage on a subset of users by load balancing. Another solution is to use record-and-replay proxies to record real traffic to the application and replay them offline.<br />
-        A third solution is to optimize XDebug's code coverage engine and make it more efficient for our need. Currently it overloads over 47 op codes. As only detecting the coverage of files or functions is enough for our architecture, we can extend this module or use in house implementations that decorate functions with code that records the coverage and achieve an acceptable overhead.
+        A third solution is to optimize XDebug's code coverage engine and make it more efficient for our need. Currently it overloads over 47 op codes. As only detecting the coverage of files or functions is enough for our architecture, we can extend this module or use in-house implementations that decorate functions with code that records the coverage and achieve an acceptable overhead.
       </p>
     </div>
   </div>
