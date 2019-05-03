@@ -265,6 +265,48 @@
       </div>
     </div>
 
+    <!-- Sample Exploit -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <hr />
+      </div>
+      <div class="col-lg-12">
+        <a class="anchor" name="exploit"></a>
+        <h4 class="mt-1"><i class="fas fa-bomb"></i> Preventing RCE on Mangento 2.0.5 (CVE-2016-4010)</h4>
+        <p>
+          To demonstrate how an exploit attempt can fail after debloating, you can test CVE-2016-4010. This exploit targets an unsafe deserialization on shopping cart information in guest checkout. The gadget chain starts with credis_client class which is the redis client used in Magento and this module is not enabled or used by default. This is a common theme for most classes used in PHP Object Injection gadgets, they are from classes that are not used. And as this is the case for this class, both file and function level debloating will successfully remove this class and exploit attempt will fail.
+        </p>
+        Follow these steps to reproduce this scenario:
+        <ol>
+          <li>
+              Get the exploit from <a href="https://www.exploit-db.com/exploits/39838">https://www.exploit-db.com/exploits/39838</a>.
+          </li>
+          <li>
+              Follow the steps and exploit the original version of Magento 2.0.5.
+              <br />
+              <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-8">
+                <a href="images/magento_exploit_success.png" data-toggle="lightbox" data-title="Exploit succeeds on original version">
+                  <img class="img-fluid img-thumbnail rounded" src="images/magento_exploit_success.png" />
+                </a>
+                </div>
+              </div>
+          </li>
+          <li>
+              Copy file or function debloated version of Magento 2.0.5 to apache root (or debloat it yourself from the debloating panel) and try the exploit again.
+              <br />
+              <div class="row">
+                <div class="col-lg-2"></div><div class="col-lg-8">
+                <a href="images/magento_exploit_failed.png" data-toggle="lightbox" data-title="Exploit failed on debloated version">
+                  <img class="img-fluid img-thumbnail rounded" src="images/magento_exploit_failed.png" />
+                </a>
+                </div>
+              </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
