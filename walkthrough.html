@@ -272,7 +272,7 @@
       </div>
       <div class="col-lg-12">
         <a class="anchor" name="exploit"></a>
-        <h4 class="mt-1"><i class="fas fa-bomb"></i> Preventing RCE on Mangento 2.0.5 (CVE-2016-4010)</h4>
+        <h4 class="mt-1"><i class="fas fa-bomb"></i> Breaking RCE exploit on Mangento 2.0.5 (CVE-2016-4010)</h4>
         <p>
           To demonstrate how an exploit attempt can fail after debloating, you can test CVE-2016-4010. This exploit targets an unsafe deserialization on shopping cart information in guest checkout. The gadget chain starts with credis_client class which is the redis client used in Magento and this module is not enabled or used by default. This is a common theme for most classes used in PHP Object Injection gadgets, they are from classes that are not used. And as this is the case for this class, both file and function level debloating will successfully remove this class and exploit attempt will fail.
         </p>
