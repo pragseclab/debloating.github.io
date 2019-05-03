@@ -274,7 +274,7 @@
         <a class="anchor" name="exploit"></a>
         <h4 class="mt-1"><i class="fas fa-bomb"></i> Breaking RCE exploit on Mangento 2.0.5 (CVE-2016-4010)</h4>
         <p>
-          To demonstrate how an exploit attempt can fail after debloating, you can test CVE-2016-4010. This exploit targets an unsafe deserialization on shopping cart information in guest checkout. The gadget chain starts with credis_client class which is the redis client used in Magento and this module is not enabled or used by default. This is a common theme for most classes used in PHP Object Injection gadgets, they are from classes that are not used. And as this is the case for this class, both file and function level debloating will successfully remove this class and exploit attempt will fail.
+          To demonstrate how an exploit attempt can fail after debloating, you can test CVE-2016-4010. This exploit targets an unsafe deserialization on shopping cart information in guest checkout. The gadget chain starts with Credis_Client class which is the redis client used in Magento and this module is not enabled or used by default. This is a common theme for most classes used in PHP Object Injection gadgets, they are from classes that are not used. And as this is the case for this class, both file and function level debloating will successfully remove this class and exploit attempt will fail.
         </p>
         Follow these steps to reproduce this scenario:
         <ol>
@@ -297,7 +297,7 @@
               <br />
               <div class="row">
                 <div class="col-lg-2"></div><div class="col-lg-8">
-                <a href="images/magento_exploit_failed.png" data-toggle="lightbox" data-title="Exploit failed on debloated version">
+                <a href="images/magento_exploit_failed.png" data-toggle="lightbox" data-title="Exploit fails on debloated version">
                   <img class="img-fluid img-thumbnail rounded" src="images/magento_exploit_failed.png" />
                 </a>
                 </div>
