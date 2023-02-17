@@ -1,0 +1,1 @@
+## This repository hosts the source code for https://lessismore.debloating.com/.
